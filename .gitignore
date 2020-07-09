@@ -1,2 +1,5 @@
 build/
 .idea/createJiraTicket.xml
+.gradle/
+
+.gradle/.*lock
