@@ -1,10 +1,24 @@
 package com.syntj.stocks
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
+/** OHLC data, as returned from FinnHub. */
 data class Ohlc(
-    val c: Double,
-    val h: Double,
+    @JsonProperty("c")
+    val current: Double,
+
+    @JsonProperty("h")
+    val high: Double,
+
+    @JsonProperty("l")
     val l: Double,
-    var o: Double,
-    val pc: Double,
-    val t: Long
+
+    @JsonProperty("o")
+    val o: Double,
+
+    @JsonProperty("pc")
+    val previousClose: Double,
+
+    @JsonProperty("t")
+    val time: Long
 )

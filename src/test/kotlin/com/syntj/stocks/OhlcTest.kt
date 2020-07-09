@@ -41,7 +41,7 @@ class OhlcTest {
         assertEquals(ohlc, ohlcDeserialized)
         val zoneId: ZoneId = ZoneId.of("America/Chicago")
         val zoneOffset = ZoneOffset.systemDefault()
-        val time: LocalDateTime = LocalDateTime.ofEpochSecond(ohlc.t, 0,
+        val time: LocalDateTime = LocalDateTime.ofEpochSecond(ohlc.time, 0,
             ZoneOffset.UTC)
 
         assertEquals(true, time.isBefore(LocalDateTime.now()))
