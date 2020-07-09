@@ -8,6 +8,9 @@ import java.util.logging.Logger
 
 class RobinhoodLoader {
 
+    // TODO new data class for single order
+    // TODO new data class for order history
+
     val robinhoodInstrumentService = RobinhoodInstrumentService()
 
     private val logger: Logger = Logger.getLogger(javaClass.simpleName)
