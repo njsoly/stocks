@@ -11,7 +11,7 @@ import java.time.ZoneOffset
 
 class OhlcTest {
 
-    val mapper = ObjectMapper().registerModule(KotlinModule())
+    val mapper: ObjectMapper = ObjectMapper().registerModule(KotlinModule())
 
     companion object {
         val SAMPLE_FINNHUB_QUOTE_JSON = "{\"c\":21.03,\"h\":21.28,\"l\":20.55,\"o\":21.04,\"pc\":20.42,\"t\":1592040051}"
