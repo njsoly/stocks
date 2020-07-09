@@ -1,4 +1,4 @@
-package com.syntj.stocks
+package com.syntj.stocks.representations.finnhub
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
@@ -25,17 +25,33 @@ class OhlcTest {
 
     @Test
     fun `serilializing object works as expected` () {
-        val ohlc = Ohlc(21.03, 21.28, 20.55, 21.04, 20.42, 1592040051L)
+        val ohlc = Ohlc(
+            21.03,
+            21.28,
+            20.55,
+            21.04,
+            20.42,
+            1592040051L
+        )
         val serialized = mapper.writeValueAsString(ohlc)
 
-        val json = SAMPLE_FINNHUB_QUOTE_JSON
+        val json =
+            SAMPLE_FINNHUB_QUOTE_JSON
         assertEquals(serialized, json)
     }
 
     @Test
     fun `given JSON for Ohlc, deserialize correctly` () {
-        val json = SAMPLE_FINNHUB_QUOTE_JSON
-        val ohlc = Ohlc(21.03, 21.28, 20.55, 21.04, 20.42, 1592040051L)
+        val json =
+            SAMPLE_FINNHUB_QUOTE_JSON
+        val ohlc = Ohlc(
+            21.03,
+            21.28,
+            20.55,
+            21.04,
+            20.42,
+            1592040051L
+        )
         val ohlcDeserialized: Ohlc = mapper.readValue(json)
 
         assertEquals(ohlc, ohlcDeserialized)

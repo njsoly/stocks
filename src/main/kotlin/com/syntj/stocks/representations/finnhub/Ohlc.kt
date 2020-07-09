@@ -1,4 +1,4 @@
-package com.syntj.stocks
+package com.syntj.stocks.representations.finnhub
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
