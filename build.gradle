@@ -22,8 +22,13 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
     compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8'
+//    compile 'com.nhaarman:mockito-kotlin:1.6.0'
+//    testCompile 'com.nhaarman:mockito-kotlin:1.6.0'
+//    implementation 'com.nhaarman:mockito-kotlin:1.6.0'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+//    testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 }
-
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
