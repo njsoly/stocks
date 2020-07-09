@@ -11,4 +11,12 @@ class EnvGetter {
     fun getEnv(name: String): String? {
         return System.getenv(name) ?: null
     }
+
+    enum class Favorites(val envVarName: String) {
+        finnhubApiKey("finnhub_api_key")
+    }
+}
+
+fun EnvGetter.Favorites.grab() : String? {
+    return EnvGetter().getEnv(this.envVarName)
 }

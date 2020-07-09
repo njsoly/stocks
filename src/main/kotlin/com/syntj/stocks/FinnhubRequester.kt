@@ -1,5 +1,6 @@
 package com.syntj.stocks
 
+import com.syntj.stocks.EnvGetter.Favorites.finnhubApiKey
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -9,7 +10,7 @@ import java.util.logging.Logger
 class FinnhubRequester {
 
     companion object {
-        val API_KEY: String? = EnvGetter().getEnv("finnhub_api_key")
+        val API_KEY: String? = finnhubApiKey.grab()
 
         const val baseQuoteUri = "https://finnhub.io/api/v1/quote"
     }
