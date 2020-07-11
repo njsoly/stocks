@@ -1,6 +1,6 @@
 package com.syntj.stocks
 
-import java.io.File
+import com.syntj.stocks.representations.robinhood.OrderFromCsv
 import java.nio.file.Files
 import java.nio.file.Path
 
@@ -28,11 +28,44 @@ class RobinhoodOrderCsvService {
         println("found ${f.size} lines in ${path.fileName}")
         return f
     }
+
+    fun loadAllOrdersFromFile(pathString: String = DEFAULT_PATH): List<OrderFromCsv> {
+        val lines = loadAllNonBlankLinesFromFile(pathString).toMutableList()
+        if (lines.isEmpty()) {
+            throw Exception("no lines recovered from file")
+        }
+        val header = lines.removeAt(0).split(",")
+        if (header.size != OrderFromCsv::class.java.declaredFields.size) {
+            throw AssertionError(
+                "header size: ${header.size}; " +
+                        "expected ${OrderFromCsv::class.java.declaredFields.size}"
+            )
+        }
+
+        val orders = ArrayList<OrderFromCsv>()
+
+        for (line in lines) {
+            val values = line.split(",")
+            orders.add(OrderFromCsv(
+                side = values[header.indexOf("side")],
+                symbol = values[header.indexOf("symbol")],
+                shares = values[header.indexOf("shares")],
+                price = values[header.indexOf("price")],
+                date = values[header.indexOf("date")],
+                state = values[header.indexOf("state")]
+            ))
+        }
+        return orders
+    }
 }
 
 /** test run. */
 fun main() {
     RobinhoodOrderCsvService().loadAllNonBlankLinesFromFile().forEach{
+        println(it)
+    }
+    println()
+    RobinhoodOrderCsvService().loadAllOrdersFromFile().forEach{
         println(it)
     }
 
