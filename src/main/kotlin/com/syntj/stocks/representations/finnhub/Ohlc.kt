@@ -11,10 +11,10 @@ data class Ohlc(
     val high: Double,
 
     @JsonProperty("l")
-    val l: Double,
+    val low: Double,
 
     @JsonProperty("o")
-    val o: Double,
+    val open: Double,
 
     @JsonProperty("pc")
     val previousClose: Double,
