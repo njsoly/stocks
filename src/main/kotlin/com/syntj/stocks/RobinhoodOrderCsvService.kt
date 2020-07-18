@@ -5,12 +5,18 @@ import java.nio.file.Files
 import java.nio.file.Path
 
 /**
+ * This class loads a few key points for every order, as output to CSV from Robinhood, with the help of
+ * the LichAmnesia repo.
+ *
  * Get an order history by:
  * * cloning  https://github.com/LichAmnesia/Robinhood
  * * copy trade_history_downloader.py up to the main directory
  * * enter your actual account details in the username & password spots
  * * run it with python
  * * you'll need to grab an SMS challenge code in order for it log you in
+ *
+ * Tested by [RobinhoodOrderCsvService_TestRun][com.syntj.stocks.testrun.RobinhoodOrderCsvService_TestRun]
+ * (full load from file)
  */
 class RobinhoodOrderCsvService {
 
