@@ -1,6 +1,7 @@
 package com.syntj.stocks.testrun
 
 import com.syntj.stocks.RobinhoodOrderCsvService
+import com.syntj.stocks.representations.robinhood.OrderFromCsv
 
 /**
  * Tests the key functionality of RobinhoodOrderCsvService,
@@ -17,7 +18,18 @@ class RobinhoodOrderCsvService_TestRun {
         orders.forEach{
             println(it)
         }
+
+        printTotalStats(orders)
         println("**** ${javaClass.simpleName} :: finished. ****")
+    }
+
+    private fun printTotalStats(orders: List<OrderFromCsv>) {
+        println("\ttotal records loaded: ${orders.size}")
+        val byStatus = orders.groupBy { it.state }
+        println("\tper status: ")
+        byStatus.forEach{
+            println("\t\t${it.key}: ${it.value.size}")
+        }
     }
 }
 
