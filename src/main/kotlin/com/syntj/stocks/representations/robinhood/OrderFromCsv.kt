@@ -1,12 +1,13 @@
 package com.syntj.stocks.representations.robinhood
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import java.time.LocalDateTime
 
 /**
  * Robinhood order history record from csv file,
  * as read in by trade_history_downloader.py.
  */
-data class OrderFromCsv (
+data class OrderFromCsv(
     @JsonProperty("side")
     val side: String,
     @JsonProperty("symbol")
@@ -16,7 +17,7 @@ data class OrderFromCsv (
     @JsonProperty("price")
     val price: String,
     @JsonProperty("date")
-    val date: String,
+    val date: LocalDateTime,
     @JsonProperty("state")
     val status: String
 )

@@ -3,6 +3,9 @@ package com.syntj.stocks
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
 import java.nio.file.Files
 import java.nio.file.Path
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.collections.ArrayList
 
 /**
  * This class loads a few key points for every order, as output to CSV from Robinhood, with the help of
@@ -58,7 +61,10 @@ class RobinhoodOrderCsvService {
                 symbol = values[header.indexOf("symbol")],
                 shares = values[header.indexOf("shares")],
                 price = values[header.indexOf("price")],
-                date = values[header.indexOf("date")],
+                date = ZonedDateTime.parse(
+                    values[header.indexOf("date")],
+                    DateTimeFormatter.ISO_INSTANT.withZone(DateUtil.CENTRAL_TIME_ZONE)
+                ).toLocalDateTime(),
                 status = values[header.indexOf("state")]
             ))
         }
