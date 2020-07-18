@@ -29,10 +29,10 @@ class RobinhoodOrderCsvService {
     }
 
     fun loadAllNonBlankLinesFromFile(pathString: String = DEFAULT_PATH): List<String> {
-        val path: Path = Path.of(pathString)
+        val path: Path = Path.of(pathString).toAbsolutePath()
 
         if (!Files.exists(path)) {
-            throw Exception("File \"${path.fileName}\" does not exist.")
+            throw Exception("File \"${path}\" does not exist.")
         }
         val f: List<String> = Files.readAllLines(path).filter {it.isNotBlank()}
         println("found ${f.size} lines in ${path.fileName}")
