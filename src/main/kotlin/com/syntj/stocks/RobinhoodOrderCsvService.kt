@@ -59,7 +59,7 @@ class RobinhoodOrderCsvService {
                 shares = values[header.indexOf("shares")],
                 price = values[header.indexOf("price")],
                 date = values[header.indexOf("date")],
-                state = values[header.indexOf("state")]
+                status = values[header.indexOf("state")]
             ))
         }
         return orders

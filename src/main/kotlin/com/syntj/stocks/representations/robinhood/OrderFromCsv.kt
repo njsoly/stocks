@@ -18,5 +18,5 @@ data class OrderFromCsv (
     @JsonProperty("date")
     val date: String,
     @JsonProperty("state")
-    val state: String
+    val status: String
 )

@@ -25,7 +25,7 @@ class RobinhoodOrderCsvService_TestRun {
 
     private fun printTotalStats(orders: List<OrderFromCsv>) {
         println("\ttotal records loaded: ${orders.size}")
-        val byStatus = orders.groupBy { it.state }
+        val byStatus = orders.groupBy { it.status }
         println("\tper status: ")
         byStatus.forEach{
             println("\t\t${it.key}: ${it.value.size}")
