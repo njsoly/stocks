@@ -11,9 +11,10 @@ import java.nio.file.Path
  * Get an order history by:
  * * cloning  https://github.com/LichAmnesia/Robinhood
  * * copy trade_history_downloader.py up to the main directory
- * * enter your actual account details in the username & password spots
+ * * enter your actual account details in the username & password spots (but don't commit & push!)
  * * run it with python
  * * you'll need to grab an SMS challenge code in order for it log you in
+ * * you should see a local file generated under the name orders.csv
  *
  * Tested by [RobinhoodOrderCsvService_TestRun][com.syntj.stocks.testrun.RobinhoodOrderCsvService_TestRun]
  * (full load from file)
