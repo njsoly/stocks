@@ -4,7 +4,7 @@ import com.syntj.stocks.RobinhoodOrderCsvService
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
 
 /**
- * Tests the key functionality of RobinhoodOrderCsvService,
+ * Tests the key functionality of [RobinhoodOrderCsvService],
  * loading up a csv file full of order data,
  * and deserializing it into [OrderFromCsv] objects.
  *
