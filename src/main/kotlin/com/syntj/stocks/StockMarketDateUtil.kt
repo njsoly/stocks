@@ -13,8 +13,9 @@ class StockMarketDateUtil : DateUtil() {
          *
          * TODO: go forward for Sat-Sun ?
          */
-        fun getMondayOfTradeWeek(localDateTime: LocalDateTime) : LocalDate{
-            return localDateTime.toLocalDate().minusDays((localDateTime.dayOfWeek.ordinal - DayOfWeek.MONDAY.ordinal).toLong())
+        fun getMondayOfTradeWeek(localDateTime: LocalDateTime) : LocalDate {
+            return localDateTime.toLocalDate()
+                .minusDays((localDateTime.dayOfWeek.ordinal - DayOfWeek.MONDAY.ordinal).toLong())
         }
     }
 }
