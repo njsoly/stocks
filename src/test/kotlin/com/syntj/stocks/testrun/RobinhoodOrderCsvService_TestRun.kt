@@ -1,8 +1,8 @@
 package com.syntj.stocks.testrun
 
 import com.syntj.stocks.RobinhoodOrderCsvService
+import com.syntj.stocks.StockMarketDateUtil
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
-import java.time.LocalDate
 
 /**
  * Tests the key functionality of [RobinhoodOrderCsvService],
@@ -30,7 +30,7 @@ class RobinhoodOrderCsvService_TestRun {
         println("\ttotal records loaded: ${orders.size}")
         val byStatus = orders.groupBy { it.status }
         val bySide = orders.groupBy { it.side }
-        val byWeek = orders.groupBy { LocalDate.ofYearDay(2020, (it.date.dayOfYear / 7) * 7 - 1) }
+        val byWeek = orders.groupBy { StockMarketDateUtil.getMondayOfTradeWeek(it.date) }
         val bySideAndStatus = orders.groupBy { "${it.side}, ${it.status}" }
 
         println("\torders per status: ")

@@ -4,7 +4,7 @@ import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
-class DateUtil {
+open class DateUtil {
 
     companion object {
         val CENTRAL_TIME_ZONE: ZoneId = ZoneId.of("America/Chicago")
