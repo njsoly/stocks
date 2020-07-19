@@ -1,6 +1,7 @@
 package com.syntj.stocks.representations.robinhood
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.syntj.stocks.DateUtil
 import java.time.LocalDateTime
 
 /**
@@ -20,4 +21,22 @@ data class OrderFromCsv(
     val date: LocalDateTime,
     @JsonProperty("state")
     val status: String
-)
+) {
+
+    companion object {
+
+        val csvHeaderRow = listOf("side", "symbol", "shares", "price", "date", "state")
+
+        fun fromString (rawLine: String) : OrderFromCsv {
+            val values = rawLine.split(",")
+            return OrderFromCsv(
+                values[csvHeaderRow.indexOf("side")],
+                values[csvHeaderRow.indexOf("symbol")],
+                values[csvHeaderRow.indexOf("shares")],
+                values[csvHeaderRow.indexOf("price")],
+                DateUtil.getZonedDateTimeFromInstantString(values[csvHeaderRow.indexOf("date")]).toLocalDateTime(),
+                values[csvHeaderRow.indexOf("state")]
+            )
+        }
+    }
+}

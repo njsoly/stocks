@@ -3,9 +3,8 @@ package com.syntj.stocks
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
 import java.nio.file.Files
 import java.nio.file.Path
-import java.time.ZonedDateTime
-import java.time.format.DateTimeFormatter
-import kotlin.collections.ArrayList
+import kotlin.reflect.full.declaredMemberProperties
+import kotlin.reflect.full.declaredMembers
 
 /**
  * This class loads a few key points for every order, as output to CSV from Robinhood, with the help of
@@ -22,64 +21,52 @@ import kotlin.collections.ArrayList
  * Tested by [RobinhoodOrderCsvService_TestRun][com.syntj.stocks.testrun.RobinhoodOrderCsvService_TestRun]
  * (full load from file)
  */
-class RobinhoodOrderCsvService {
+class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
 
     companion object {
         const val DEFAULT_PATH: String = "data/orders.csv"
     }
 
-    fun loadAllNonBlankLinesFromFile(pathString: String = DEFAULT_PATH): List<String> {
-        val path: Path = Path.of(pathString).toAbsolutePath()
+    private val path: Path = Path.of(pathString).toAbsolutePath()
 
+    init {
         if (!Files.exists(path)) {
             throw Exception("File \"${path}\" does not exist.")
         }
+    }
+
+    fun loadAllNonBlankLinesFromFile(): List<String> {
         val f: List<String> = Files.readAllLines(path).filter {it.isNotBlank()}
         println("found ${f.size} lines in ${path.fileName}")
         return f
     }
 
-    fun loadAllOrdersFromFile(pathString: String = DEFAULT_PATH): List<OrderFromCsv> {
-        val lines = loadAllNonBlankLinesFromFile(pathString).toMutableList()
+    fun loadAllOrdersFromFile(): List<OrderFromCsv> {
+        val lines = loadAllNonBlankLinesFromFile().toMutableList()
         if (lines.isEmpty()) {
             throw Exception("no lines recovered from file")
         }
-        val header = lines.removeAt(0).split(",")
-        if (header.size != OrderFromCsv::class.java.declaredFields.size) {
-            throw AssertionError(
-                "header size: ${header.size}; " +
-                        "expected ${OrderFromCsv::class.java.declaredFields.size}"
-            )
-        }
+
+        verifyHeaderLineMatchesDataClass(lines.removeAt(0))
 
         val orders = ArrayList<OrderFromCsv>()
 
         for (line in lines) {
-            val values = line.split(",")
-            orders.add(OrderFromCsv(
-                side = values[header.indexOf("side")],
-                symbol = values[header.indexOf("symbol")],
-                shares = values[header.indexOf("shares")],
-                price = values[header.indexOf("price")],
-                date = ZonedDateTime.parse(
-                    values[header.indexOf("date")],
-                    DateTimeFormatter.ISO_INSTANT.withZone(DateUtil.CENTRAL_TIME_ZONE)
-                ).toLocalDateTime(),
-                status = values[header.indexOf("state")]
-            ))
+            orders.add(OrderFromCsv.fromString(line))
         }
         return orders
     }
-}
 
-/** test run. */
-fun main() {
-    RobinhoodOrderCsvService().loadAllNonBlankLinesFromFile().forEach{
-        println(it)
-    }
-    println()
-    RobinhoodOrderCsvService().loadAllOrdersFromFile().forEach{
-        println(it)
-    }
+    private fun verifyHeaderLineMatchesDataClass(headerLineRaw: String) {
+        val header = headerLineRaw.split(",")
+        if (header.size != OrderFromCsv::class.declaredMemberProperties.size) {
+            throw AssertionError(
+                "header size: ${header.size}; " +
+                        "expected ${OrderFromCsv::class.declaredMemberProperties.size}"
+            )
+        } else if (header != OrderFromCsv.csvHeaderRow) {
+            throw AssertionError("header from CSV does not match what is expected in OrderFromCsv class")
+        }
 
+    }
 }
