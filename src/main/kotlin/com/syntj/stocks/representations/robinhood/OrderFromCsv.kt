@@ -9,6 +9,7 @@ import java.time.LocalDateTime
  * as read in by trade_history_downloader.py.
  */
 data class OrderFromCsv(
+    /** buy or sell */
     @JsonProperty("side")
     val side: String,
     @JsonProperty("symbol")
@@ -22,20 +23,21 @@ data class OrderFromCsv(
     @JsonProperty("state")
     val status: String
 ) {
-
     companion object {
 
-        val csvHeaderRow = listOf("side", "symbol", "shares", "price", "date", "state")
+        // TODO actually make this list the JsonProperty values rather than hard code them
+        val expectedCsvHeaderRow = listOf("side", "symbol", "shares", "price", "date", "state")
 
+        /** Construct an [OrderFromCsv] object from an as-is line from the file. */
         fun fromString (rawLine: String) : OrderFromCsv {
             val values = rawLine.split(",")
             return OrderFromCsv(
-                values[csvHeaderRow.indexOf("side")],
-                values[csvHeaderRow.indexOf("symbol")],
-                values[csvHeaderRow.indexOf("shares")],
-                values[csvHeaderRow.indexOf("price")],
-                DateUtil.getZonedDateTimeFromInstantString(values[csvHeaderRow.indexOf("date")]).toLocalDateTime(),
-                values[csvHeaderRow.indexOf("state")]
+                values[expectedCsvHeaderRow.indexOf("side")],
+                values[expectedCsvHeaderRow.indexOf("symbol")],
+                values[expectedCsvHeaderRow.indexOf("shares")],
+                values[expectedCsvHeaderRow.indexOf("price")],
+                DateUtil.getZonedDateTimeFromInstantString(values[expectedCsvHeaderRow.indexOf("date")]).toLocalDateTime(),
+                values[expectedCsvHeaderRow.indexOf("state")]
             )
         }
     }

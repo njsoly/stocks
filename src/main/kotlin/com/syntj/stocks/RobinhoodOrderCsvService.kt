@@ -4,7 +4,6 @@ import com.syntj.stocks.representations.robinhood.OrderFromCsv
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.reflect.full.declaredMemberProperties
-import kotlin.reflect.full.declaredMembers
 
 /**
  * This class loads a few key points for every order, as output to CSV from Robinhood, with the help of
@@ -64,7 +63,7 @@ class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
                 "header size: ${header.size}; " +
                         "expected ${OrderFromCsv::class.declaredMemberProperties.size}"
             )
-        } else if (header != OrderFromCsv.csvHeaderRow) {
+        } else if (header != OrderFromCsv.expectedCsvHeaderRow) {
             throw AssertionError("header from CSV does not match what is expected in OrderFromCsv class")
         }
 
