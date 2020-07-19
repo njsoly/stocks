@@ -1,11 +1,11 @@
 package com.syntj.stocks
 
+import com.syntj.BaseUnitTest
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Test
 
 /** tests [DateUtil]. */
-class DateUtilTest {
+class DateUtilTest : BaseUnitTest() {
 
     private val INSTANT_STRING_UTC = "2020-06-03T15:22:00.726000Z"
 

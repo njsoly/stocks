@@ -1,5 +1,6 @@
 package com.syntj.stocks
 
+import com.syntj.BaseUnitTest
 import org.junit.Assert.*
 import org.junit.Test
 import java.nio.file.Path

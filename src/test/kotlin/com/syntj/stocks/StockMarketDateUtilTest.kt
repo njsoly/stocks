@@ -1,14 +1,11 @@
 package com.syntj.stocks
 
+import com.syntj.BaseUnitTest
 import org.junit.Assert.*
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.Month
 
-@RunWith(MockitoJUnitRunner::class)
 class StockMarketDateUtilTest : BaseUnitTest() {
 
     @Test

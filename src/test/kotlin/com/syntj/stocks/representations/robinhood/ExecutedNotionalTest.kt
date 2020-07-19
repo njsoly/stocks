@@ -2,9 +2,8 @@ package com.syntj.stocks.representations.robinhood
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.syntj.stocks.BaseUnitTest
+import com.syntj.BaseUnitTest
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class ExecutedNotionalTest: BaseUnitTest() {
