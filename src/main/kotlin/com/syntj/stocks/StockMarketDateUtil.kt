@@ -1,5 +1,6 @@
 package com.syntj.stocks
 
+import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.LocalDateTime
 
@@ -13,7 +14,7 @@ class StockMarketDateUtil : DateUtil() {
          * TODO: go forward for Sat-Sun ?
          */
         fun getMondayOfTradeWeek(localDateTime: LocalDateTime) : LocalDate{
-            return LocalDate.ofYearDay(2020, (localDateTime.dayOfYear / 7) * 7 - 1)
+            return localDateTime.toLocalDate().minusDays((localDateTime.dayOfWeek.ordinal - DayOfWeek.MONDAY.ordinal).toLong())
         }
     }
 }
