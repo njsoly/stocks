@@ -1,6 +1,9 @@
 package com.syntj.stocks
 
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.reflect.full.declaredMemberProperties
@@ -26,22 +29,23 @@ class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
         const val DEFAULT_PATH: String = "data/orders.csv"
     }
 
-    private val path: Path = Path.of(pathString).toAbsolutePath()
+    private val defaultPath: Path = Path.of(pathString).toAbsolutePath()
+    private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
     init {
-        if (!Files.exists(path)) {
-            throw Exception("File \"${path}\" does not exist.")
+        if (!Files.exists(defaultPath)) {
+            throw Exception("File \"${defaultPath}\" does not exist.")
         }
     }
 
-    fun loadAllNonBlankLinesFromFile(): List<String> {
-        val f: List<String> = Files.readAllLines(path).filter {it.isNotBlank()}
-        println("found ${f.size} lines in ${path.fileName}")
+    private fun loadAllNonBlankLinesFromFile(filePath: Path = defaultPath): List<String> {
+        val f: List<String> = Files.readAllLines(filePath).filter {it.isNotBlank()}
+        logger.debug("found ${f.size} lines in ${filePath.fileName}")
         return f
     }
 
-    fun loadAllOrdersFromFile(): List<OrderFromCsv> {
-        val lines = loadAllNonBlankLinesFromFile().toMutableList()
+    fun loadAllOrdersFromFile(path: Path = defaultPath): List<OrderFromCsv> {
+        val lines = loadAllNonBlankLinesFromFile(path).toMutableList()
         if (lines.isEmpty()) {
             throw Exception("no lines recovered from file")
         }
