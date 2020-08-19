@@ -44,10 +44,6 @@ class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
         return f
     }
 
-    fun loadAllOrdersFromFile(file: File): List<OrderFromCsv> {
-        return loadAllOrdersFromFile(file.toPath())
-    }
-
     fun loadAllOrdersFromFile(path: Path = defaultPath): List<OrderFromCsv> {
         val lines = loadAllNonBlankLinesFromFile(path).toMutableList()
         if (lines.isEmpty()) {

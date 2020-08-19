@@ -1,7 +1,8 @@
 package com.syntj.stocks
 
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
-import java.util.logging.Logger
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /**
  * Python repo to get order history, portfolio, and positions info:
@@ -16,7 +17,7 @@ class RobinhoodDataService {
 
     private val robinhoodInstrumentService = RobinhoodInstrumentService()
     private val robinhoodOrderCsvService = RobinhoodOrderCsvService()
-    private val logger: Logger = Logger.getLogger(javaClass.simpleName)
+    private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
     /** retrieving this URL will get you information about MSFT, and it matches that of
      * the [instrument] fields of order_history. */
@@ -40,6 +41,7 @@ class RobinhoodDataService {
         orders.forEach{order ->
             symbols.add(order.symbol)
         }
+        logger.info("${symbols.size} symbols found in ${orders.size} orders.")
         return symbols.toList().sorted()
     }
 
