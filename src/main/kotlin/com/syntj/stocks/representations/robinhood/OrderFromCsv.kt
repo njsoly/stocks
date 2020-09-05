@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 /**
  * Robinhood order history record from csv file,
- * as read in by trade_history_downloader.py.
+ * as read in by [trade_history_downloader.py](https://github.com/LichAmnesia/Robinhood/blob/master/Robinhood/trade_history_downloader.py)
  */
 data class OrderFromCsv(
     /** "buy" or "sell" */
