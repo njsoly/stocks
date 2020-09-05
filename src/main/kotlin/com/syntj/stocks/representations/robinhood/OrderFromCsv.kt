@@ -9,17 +9,22 @@ import java.time.LocalDateTime
  * as read in by trade_history_downloader.py.
  */
 data class OrderFromCsv(
-    /** buy or sell */
+    /** "buy" or "sell" */
     @JsonProperty("side")
     val side: String,
+    /** I expect these to be in all caps, but cryptos might be spelled out. */
     @JsonProperty("symbol")
     val symbol: String,
+    /** Comes in decimal form, with 8 places after decimal. */
     @JsonProperty("shares")
     val shares: String,
+    /** Comes in decimal form, with 8 places after decimal. */
     @JsonProperty("price")
     val price: String,
+    /** format: 2020-08-19T00:45:47.562564Z */
     @JsonProperty("date")
     val date: LocalDateTime,
+    /** states: filled, cancelled, queued, confirmed */
     @JsonProperty("state")
     val status: String
 ) {
