@@ -2,7 +2,6 @@ package com.syntj.stocks
 
 import com.syntj.BaseUnitTest
 import com.syntj.stocks.representations.robinhood.OrderFromCsv
-import org.junit.Assert.*
 import org.junit.Test
 import java.time.LocalDateTime
 
