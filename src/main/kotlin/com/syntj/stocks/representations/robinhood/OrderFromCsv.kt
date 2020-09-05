@@ -24,7 +24,7 @@ data class OrderFromCsv(
     /** format: 2020-08-19T00:45:47.562564Z */
     @JsonProperty("date")
     val date: LocalDateTime,
-    /** states: filled, canceled, queued, confirmed */
+    /** states: filled, cancelled, queued, confirmed */
     @JsonProperty("state")
     val status: String
 ) {
