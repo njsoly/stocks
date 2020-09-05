@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory
  * https://github.com/LichAmnesia/Robinhood
  * You can even make trades.... be careful
  * before using the main executables, call py install setup.py.
+ *
+ * Test run: RobinhoodDataService_TestRun
  */
 class RobinhoodDataService {
 
@@ -45,11 +47,4 @@ class RobinhoodDataService {
         return symbols.toList().sorted()
     }
 
-}
-
-fun main() {
-    val robinhoodDataService = RobinhoodDataService()
-    print(robinhoodDataService.getMsftInstrument())
-
-    print(robinhoodDataService.getOrdersFromCsv())
 }

@@ -1,5 +1,13 @@
 package com.syntj.stocks.testrun
 
-class RobinhoodDataService_TestRun {
+import com.syntj.stocks.RobinhoodDataService
 
+/**
+ * Tests [RobinhoodDataService]
+ */
+fun main() {
+    val robinhoodDataService = RobinhoodDataService()
+    print(robinhoodDataService.getMsftInstrument())
+
+    print(robinhoodDataService.getOrdersFromCsv())
 }
