@@ -36,17 +36,17 @@ class FinnhubRequester {
      * expect a return in this form:
      * {"c":21.03,"h":21.28,"l":20.55,"o":21.04,"pc":20.42,"t":1592040051}
      */
-    fun requestQuoteAsString(symbol: String) : HttpResponse<String> {
+    fun requestQuoteAsString(symbol: String) : String {
         val request: HttpRequest = HttpRequest.newBuilder(
             URI(buildQuoteRequestUri(symbol))
         ).build()
 
         val bodyHandler: HttpResponse.BodyHandler<String> = HttpResponse.BodyHandlers.ofString()
 
-        return client.send(request, bodyHandler)
+        return client.send(request, bodyHandler).body() ?: throw NoSuchElementException("none returned")
     }
 
-    fun requestQuoteAsString(symbol: WatchedStock) : HttpResponse<String> {
+    fun requestQuoteAsString(symbol: WatchedStock) : String {
         return requestQuoteAsString(symbol.name)
     }
 

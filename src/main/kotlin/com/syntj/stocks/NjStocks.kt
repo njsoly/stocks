@@ -10,9 +10,9 @@ class NjStocks {
     fun run() {
         println("************** NjStocks **************")
 
-        val quoteString: HttpResponse<String> = FinnhubRequester().requestQuoteAsString(WatchedStock.DBX)
+        val quoteString: String = FinnhubRequester().requestQuoteAsString(WatchedStock.DBX)
 
-        println(quoteString.body())
+        println(quoteString)
 
     }
 }
