@@ -12,10 +12,6 @@ class EnvGetter {
         return System.getenv(name) ?: null
     }
 
-    enum class Favorites(val envVarName: String) {
-        finnhubApiKey(FINNHUB_API_KEY)
-    }
-
     companion object {
         const val FINNHUB_API_KEY = "finnhub_api_key"
     }

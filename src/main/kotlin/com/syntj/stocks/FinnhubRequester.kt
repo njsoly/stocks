@@ -8,11 +8,16 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
+/**
+ * Query the Finnhub API
+ * https://finnhub.io
+ *
+ */
 class FinnhubRequester {
 
     companion object {
         val API_KEY: String? = EnvGetter().getEnv(EnvGetter.FINNHUB_API_KEY)
-        const val baseQuoteUri = "https://finnhub.io/api/v1/quote"
+        const val BASE_URI_QUOTE = "https://finnhub.io/api/v1/quote"
 
     }
 
@@ -31,7 +36,7 @@ class FinnhubRequester {
      * expect a return in this form:
      * {"c":21.03,"h":21.28,"l":20.55,"o":21.04,"pc":20.42,"t":1592040051}
      */
-    fun requestQuoteAsString(symbol: WatchedStock) : HttpResponse<String> {
+    fun requestQuoteAsString(symbol: String) : HttpResponse<String> {
         val request: HttpRequest = HttpRequest.newBuilder(
             URI(buildQuoteRequestUri(symbol))
         ).build()
@@ -41,8 +46,12 @@ class FinnhubRequester {
         return client.send(request, bodyHandler)
     }
 
+    fun requestQuoteAsString(symbol: WatchedStock) : HttpResponse<String> {
+        return requestQuoteAsString(symbol.name)
+    }
+
     private fun buildQuoteRequestUri(symbol: String): String {
-        var uri = "$baseQuoteUri?symbol=$symbol"
+        var uri = "$BASE_URI_QUOTE?symbol=$symbol"
         if (API_KEY != null){
             uri += "&token=${API_KEY}"
         }
