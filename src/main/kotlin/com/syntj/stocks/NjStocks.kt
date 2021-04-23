@@ -3,6 +3,9 @@ package com.syntj.stocks
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+/**
+ * Driver class to showcase some things about [this repository](https://github.com/njsoly/stocks).
+ */
 class NjStocks {
 
     fun run() {
@@ -20,9 +23,7 @@ class NjStocks {
 
                 val quoteString = FinnhubRequester().requestQuoteAsString(symbol)
                 logger.info("\n\tresult: $quoteString\n***\n")
-
             }
-            
             
             fun runAll () {
                 this.requestQuoteAsString()
