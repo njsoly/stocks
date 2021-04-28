@@ -33,12 +33,8 @@ class RobinhoodDataService {
         return robinhoodOrderCsvService.loadAllOrdersFromFile()
     }
 
-    fun getSymbolsFromOrders(ordersList: List<OrderFromCsv>?) : List<String> {
-        val orders = if(ordersList != null) {
-            ordersList
-        } else {
-            getOrdersFromCsv()
-        }
+    fun getSymbolsFromOrders(ordersList: List<OrderFromCsv>? = null) : List<String> {
+        val orders = ordersList ?: getOrdersFromCsv()
         val symbols = mutableSetOf<String>()
         orders.forEach{order ->
             symbols.add(order.symbol)
