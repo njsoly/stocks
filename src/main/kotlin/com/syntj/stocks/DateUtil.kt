@@ -45,7 +45,5 @@ open class DateUtil {
 
 
 fun String.toSimplerDateTimeString() : String {
-    val dtf = DateTimeFormatterBuilder().appendValue(ChronoField.YEAR).appendLiteral("-")
-
-    return this
+    return this.replace('T', ' ').split('.').first()
 }

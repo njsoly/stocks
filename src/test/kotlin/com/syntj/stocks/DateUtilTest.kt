@@ -30,8 +30,11 @@ class DateUtilTest : BaseUnitTest() {
 
     @Test
     fun `demonstrate UTC string converted to LocalDate` () {
+        val result = DateUtil.getZonedDateTimeFromInstantString(INSTANT_STRING_UTC).toLocalDateTime()
         println("ISO-8601 string: $INSTANT_STRING_UTC")
-        println("In LocalDate form: ${DateUtil.getZonedDateTimeFromInstantString(INSTANT_STRING_UTC).toLocalDateTime()}")
+        println(
+            "In LocalDateTime form: $result".toSimplerDateTimeString()
+        )
     }
 
     @Test
