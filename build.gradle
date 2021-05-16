@@ -1,16 +1,38 @@
+// took some stuff from https://www.petrikainulainen.net/programming/gradle/getting-started-with-gradle-creating-a-spring-boot-web-application-project/
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(
+                'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE',
+                'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
+        )
+    }
+}
+
 plugins {
     id 'groovy'
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+    id 'org.unbroken-dome.test-sets' version '4.0.0'
 }
+apply plugin: 'spring-boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 group 'com.syntj'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+testSets {
+    integrationTest { dirName = 'integration-test' }
 }
 
 dependencies {
@@ -27,10 +49,32 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.30'
     compile 'ch.qos.logback:logback-classic:1.2.3'
     compile 'ch.qos.logback:logback-core:1.2.3'
+
+    // Wiremock will only be available in integration tests, but not in unit tests
+    // this seems to be auto-wired to the testSets: integrationTest.
+    // "Implementation" must be a usable suffix for any gradle task
+    integrationTestImplementation 'com.github.tomakehurst:wiremock:2.19.0'
 }
+
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+
+
+
+project.integrationTest {
+    outputs.upToDateWhen { false }
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+
