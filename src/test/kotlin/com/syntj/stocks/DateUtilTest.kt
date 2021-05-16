@@ -5,6 +5,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.time.Instant
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import java.time.temporal.ChronoField
 
 /** tests [DateUtil]. */
@@ -41,7 +42,7 @@ class DateUtilTest : BaseUnitTest() {
     fun `YYYYMMDD_FORMATTER formats YYYY-MM-DD correctly` () {
         println("Instant in ISO-8601 form: $INSTANT_20200603")
 
-        val instant = INSTANT_20200603.atZone(DateUtil.FORMATTER_YYYYMMDD.zone)
+        val instant: ZonedDateTime = INSTANT_20200603.atZone(DateUtil.FORMATTER_YYYYMMDD.zone)
         val result = DateUtil.FORMATTER_YYYYMMDD.format(INSTANT_20200603)
         println("Formatted with YYYYMMDD_FORMATTER: $result")
         assertEquals(
@@ -53,7 +54,7 @@ class DateUtilTest : BaseUnitTest() {
             result.split('-')[1]
         )
         assertEquals(
-            instant.get(ChronoField.DAY_OF_MONTH).toString().padStart(2, '0'),
+            instant.getDD(),
             result.split('-')[2]
         )
         assertEquals(10, result.length)
