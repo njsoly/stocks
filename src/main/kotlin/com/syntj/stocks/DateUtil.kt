@@ -4,6 +4,9 @@ import java.time.Clock
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatterBuilder
+import java.time.temporal.ChronoField
+import java.time.temporal.TemporalField
 
 /**
  * @see [StockMarketDateUtil]
@@ -27,5 +30,22 @@ open class DateUtil {
             )
         }
 
+        val FORMATTER_YYYYMMDD: DateTimeFormatter = DateTimeFormatterBuilder()
+            .appendValue(ChronoField.YEAR, 4)
+            .appendLiteral('-')
+            .appendValue(ChronoField.MONTH_OF_YEAR, 2)
+            .appendLiteral('-')
+            .appendValue(ChronoField.DAY_OF_MONTH, 2)
+            .toFormatter()
+            .withZone(ZoneId.of("America/Chicago"))
+
     }
+
+}
+
+
+fun String.toSimplerDateTimeString() : String {
+    val dtf = DateTimeFormatterBuilder().appendValue(ChronoField.YEAR).appendLiteral("-")
+
+    return this
 }
