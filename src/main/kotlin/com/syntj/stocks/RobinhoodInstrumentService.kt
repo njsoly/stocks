@@ -1,6 +1,6 @@
 package com.syntj.stocks
 
-class RobinhoodInstrumentService : HttpGetter() {
+class RobinhoodInstrumentService (val httpGetter: HttpGetter = HttpGetter()) {
 
     companion object {
         private const val INSTRUMENT_URI_BASE = "https://api.robinhood.com/instruments"
@@ -16,6 +16,6 @@ class RobinhoodInstrumentService : HttpGetter() {
      * URL should be in the form https://api.robinhood.com/instruments/<UUID>
      */
     fun getInstrumentStringFromUrl(instrumentUrl: String) : String {
-        return getRequest(instrumentUrl).body() as String
+        return httpGetter.getRequest(instrumentUrl).body() as String
     }
 }
