@@ -44,6 +44,10 @@ class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
         return f
     }
 
+    /**
+     * Given a [Path], turn every non-blank line into an [OrderFromCsv]
+     * (except for the first line, which is the header).
+     */
     fun loadAllOrdersFromFile(path: Path = defaultPath): List<OrderFromCsv> {
         val lines = loadAllNonBlankLinesFromFile(path).toMutableList()
         if (lines.isEmpty()) {
