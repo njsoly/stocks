@@ -59,6 +59,7 @@ class RobinhoodOrderCsvServiceTest : BaseUnitTest() {
     @Test
     fun `ORDERS_SAMPLES_PATH can be parsed and exists` () {
         assertEquals(true, Path.of(ORDERS_SAMPLES_PATH).toFile().exists())
+        assertEquals(true, Path.of(ORDERS_SAMPLES_PATH).toFile().canRead())
     }
 
     @Test
