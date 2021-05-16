@@ -4,6 +4,7 @@ import com.syntj.BaseUnitTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
+/** Tests [ExecutedNotional] */
 class ExecutedNotionalTest: BaseUnitTest() {
 
     private val EXAMPLE_FILENAME = "executedNotionalExample.json"
@@ -15,6 +16,9 @@ class ExecutedNotionalTest: BaseUnitTest() {
         val en: ExecutedNotional = objectMapper.readValue(example, ExecutedNotional::class.java)
         val str: String = objectMapper.writeValueAsString(en)
 
+        assertEquals(false, en.amount.isBlank())
+        assertEquals(false, en.currencyCode.isBlank())
+        assertEquals(false, en.currencyId.isBlank())
         assertEquals(example, str)
     }
 }
