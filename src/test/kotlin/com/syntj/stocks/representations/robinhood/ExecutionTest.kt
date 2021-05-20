@@ -5,7 +5,7 @@ import org.junit.Test
 
 class ExecutionTest : BaseUnitTest() {
 
-    val sample = this.loadTestFile("execution.sample.json").joinToString()
+    private val sample = this.loadTestFile("execution.sample.json").joinToString()
 
     @Test
     fun `read in an Execution` () {

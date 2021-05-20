@@ -4,7 +4,7 @@ import com.syntj.BaseUnitTest
 import org.junit.Test
 
 class TrailingPegTest: BaseUnitTest() {
-    val sample = this.loadTestFile("trailingPeg.sample.json").joinToString()
+    private val sample = this.loadTestFile("trailingPeg.sample.json").joinToString()
 
     @Test
     fun `read in a TrailingPeg` () {
