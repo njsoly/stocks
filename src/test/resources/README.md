@@ -9,7 +9,7 @@
   - This sample file only holds two orders.
 
 
-- rawRobinhoodOrder.sample.json
+- order.sample.json
   - one order in history.
   - one of the items in the overall array held in FullOrderHistory.
   - will be Kotlinized by RawRobinhoodOrder.kt

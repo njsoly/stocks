@@ -1,0 +1,52 @@
+package com.syntj.stocks.representations.robinhood
+
+import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.databind.annotation.JsonNaming
+
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
+data class RawRobinhoodOrder(
+    val id: String,
+    val refId: String,
+    val url: String,
+    val account: String,
+    val position: String,
+    val cancel: String?,
+    val instrument: String,
+    val instrumentId: String,
+    val cumulativeQuantity: String,
+    val averagePrice: String?,
+    val fees: String,
+    val state: String,
+    val type: String,
+    val side: String,
+    val timeInForce: String,
+    val trigger: String,
+    val price: String?,
+    val stopPrice: String?,
+    val quantity: String,
+    val rejectReason: String?,
+    val createdAt: String,
+    val updatedAt: String,
+    val lastTransactionAt: String?,
+    val executions: List<Execution>,
+    val extendedHours: Boolean,
+    val overrideDtbpChecks: Boolean,
+    val overrideDayTradeChecks: Boolean,
+    val trailingPeg: TrailingPeg?,
+    val responseCategory: String?,
+    val stopTriggeredAt: String?,
+    val lastTrailPrice: LastTrailPrice?,
+    val lastTrailPriceUpdatedAt: String?,
+    val dollarBasedAmount: String?,
+    val totalNotional: Notional?,
+    val executedNotional: Notional?,
+    val investmentScheduleId: String?,
+    val isIpoAccessOrder: Boolean,
+    val ipoAccessCancellationReason: String?,
+    val ipoAccessLowerCollaredPrice: String?,
+    val ipoAccessUpperCollaredPrice: String?,
+    val ipoAccessUpperPrice: String?,
+    val ipoAccessLowerPrice: String?,
+    val isIpoAccessPriceFinalized: Boolean,
+    val hasIpoAccessCustomPriceLimit: Boolean
+)
