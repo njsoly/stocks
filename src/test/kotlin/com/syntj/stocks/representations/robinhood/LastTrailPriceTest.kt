@@ -8,7 +8,7 @@ class LastTrailPriceTest: BaseUnitTest() {
 
     @Test
     fun `read in a LastTrailPrice` () {
-        val result = objectMapper.readValue(sample, LastTrailPrice::class.java)
+        val result: LastTrailPrice = objectMapper.readValue(sample, LastTrailPrice::class.java)
         println(result)
     }
 }

@@ -5,5 +5,6 @@ package com.syntj.stocks.representations.robinhood
  */
 data class TrailingPeg (
     val type: String,
-    val percentage: String?
+    val percentage: String?,
+    val price: Notional?
 )
