@@ -8,7 +8,7 @@ import java.time.LocalDateTime
  * Robinhood order history record from csv file,
  * as read in by [trade_history_downloader.py](https://github.com/LichAmnesia/Robinhood/blob/master/Robinhood/trade_history_downloader.py)
  */
-data class OrderFromCsv(
+class OrderFromCsv(
     /** "buy" or "sell" */
     @JsonProperty("side")
     val side: String,
@@ -26,8 +26,8 @@ data class OrderFromCsv(
     val date: LocalDateTime,
     /** states: filled, cancelled, queued, confirmed */
     @JsonProperty("state")
-    val status: String
-) {
+    val status: String) {
+
     companion object {
 
         // TODO actually make this list the JsonProperty values rather than hard code them

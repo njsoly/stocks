@@ -1,6 +1,7 @@
 package com.syntj.stocks
 
 import java.time.Clock
+import java.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -45,7 +46,9 @@ open class DateUtil {
 
 
 fun String.toSimplerDateTimeString() : String {
-    val dtf = DateTimeFormatterBuilder().appendValue(ChronoField.YEAR).appendLiteral("-")
+    return this.replace('T', ' ').split('.').first()
+}
 
-    return this
+fun ZonedDateTime.getDD() : String {
+    return this.get(ChronoField.DAY_OF_MONTH).toString().padStart(2, '0')
 }
