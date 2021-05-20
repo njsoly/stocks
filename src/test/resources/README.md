@@ -28,3 +28,10 @@
 - executedNotionalExample:
   * one of the nested objects within a RawRobinhoodOrder.
     
+- totalNotional.sample.json
+  - nested object within an order, probably the same as executed notional?
+  
+
+- execution.sample.json
+  - an array of these comes nested with a buy order 
+  - it details the actual price, date, quantity, etc. of an order
