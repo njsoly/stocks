@@ -1,0 +1,10 @@
+# LF
+*.sh text eol=lf
+*.bash text eol=lf
+*.aliases text eol=lf
+*.kt text eol=lf
+*.java text eol=lf
+
+# CRLF
+*.bat text eol=crlf
+*.sln text eol=crlf
