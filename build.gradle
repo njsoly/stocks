@@ -26,6 +26,13 @@ targetCompatibility = 1.8
 group 'com.syntj'
 version '1.0-SNAPSHOT'
 
+sourceSets {
+    main.java.srcDirs = []
+    main.kotlin.srcDirs = ['src/main/java', 'src/main/kotlin']
+    test.kotlin.srcDirs = ['src/test/java', 'src/test/kotlin']
+    main.resources.srcDirs = ['src/main/resources']
+    test.resources.srcDirs = ['src/test/resources']
+}
 
 repositories {
     mavenCentral()
