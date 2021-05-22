@@ -6,6 +6,8 @@ class RobinhoodApiClient {
         const val quoteBaseUrl: String = "https://api.robinhood.com/quotes/"
         const val apiUrl: String = "https://api.robinhood.com"
         const val loginUrl = "$apiUrl/oauth2/token/"
+        const val clientId = "c82SH0WZOsabOXGP2sxqcj34FxkvfnWRZBKlBjFS"
+        const val grantType = "password"
     }
 
     // TODO get this to work.  It returns a 401.  Probably need to log in.
