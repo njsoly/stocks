@@ -2,12 +2,12 @@
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath(
-                'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE',
-                'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
+            'org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE',
+            'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
         )
     }
 }
@@ -27,10 +27,10 @@ group 'com.syntj'
 version '1.0-SNAPSHOT'
 
 sourceSets {
-    main.java.srcDirs = []
-    main.kotlin.srcDirs = ['src/main/java', 'src/main/kotlin']
-    test.kotlin.srcDirs = ['src/test/java', 'src/test/kotlin']
+    main.java.srcDirs = ['src/main/java']
+    main.kotlin.srcDirs = ['src/main/kotlin']
     main.resources.srcDirs = ['src/main/resources']
+    test.kotlin.srcDirs = ['src/test/java', 'src/test/kotlin']
     test.resources.srcDirs = ['src/test/resources']
 }
 
