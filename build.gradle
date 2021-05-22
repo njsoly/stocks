@@ -70,9 +70,6 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-
-
-
 project.integrationTest {
     outputs.upToDateWhen { false }
 }
