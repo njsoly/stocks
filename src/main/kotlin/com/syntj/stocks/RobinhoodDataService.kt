@@ -12,13 +12,15 @@ import org.slf4j.LoggerFactory
  *
  * Test run: RobinhoodDataService_TestRun
  */
-class RobinhoodDataService {
+class RobinhoodDataService (
+    val robinhoodInstrumentService: RobinhoodInstrumentService = RobinhoodInstrumentService(),
+    val robinhoodOrderCsvService: RobinhoodOrderCsvService = RobinhoodOrderCsvService()){
 
     // TODO new data class for single order
     // TODO new data class for order history
 
-    private val robinhoodInstrumentService = RobinhoodInstrumentService()
-    private val robinhoodOrderCsvService = RobinhoodOrderCsvService()
+//    private val robinhoodInstrumentService = RobinhoodInstrumentService()
+//    private val robinhoodOrderCsvService = RobinhoodOrderCsvService()
     private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
     /** retrieving this URL will get you information about MSFT, and it matches that of

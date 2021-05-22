@@ -23,7 +23,7 @@ import kotlin.reflect.full.declaredMemberProperties
  * Tested by [RobinhoodOrderCsvService_TestRun][com.syntj.stocks.testrun.RobinhoodOrderCsvService_TestRun]
  * (full load from file)
  */
-class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
+open class RobinhoodOrderCsvService (pathString: String = DEFAULT_PATH){
 
     companion object {
         const val DEFAULT_PATH: String = "data/orders.csv"
