@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming
 /**
  * See lastTrailPrice.sample.json.
  */
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy::class)
 data class LastTrailPrice (
     val amount: String,
     val currencyCode: String,

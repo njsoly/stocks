@@ -10,7 +10,7 @@ import java.time.LocalDate
 /**
  * Example: "executions": [{"price": "0.90700000", "quantity": "8.00000000", "settlement_date": "2020-07-10", "timestamp": "2020-07-08T19:55:00.475000Z", "id": "97c4cf20-fa80-4ea3-988b-4a117cbeb39d"}]
  */
-@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy::class)
+@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy::class)
 data class Execution (
     val price: String,
     val quantity: String,
