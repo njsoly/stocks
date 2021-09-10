@@ -1,5 +1,8 @@
 package com.syntj.stocks
 
+import org.springframework.stereotype.Component
+
+@Component
 class RobinhoodApiClient {
 
     companion object {
