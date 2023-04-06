@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="NjStocksKt" type="JetRunConfigurationType" nameIsGenerated="true">
+    <envs>
+      <env name="FINNHUB_API_KEY" value="bri829frh5rep8a5iigg" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.syntj.stocks.NjStocksKt" />
+    <module name="stocks.main" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
