@@ -15,13 +15,24 @@ buildscript {
 plugins {
     id 'groovy'
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+    id "org.jetbrains.kotlin.jvm" version '1.5.32'
     id 'org.unbroken-dome.test-sets' version '4.0.0'
 }
-apply plugin: 'spring-boot'
+//apply plugin: 'spring-boot'
 
-sourceCompatibility = 11
-targetCompatibility = 11
+
+ext {
+    springBootVersion = "2.7.10"
+    kotlinVersion = "1.5.32"
+    junitVersion = '4.13.1'
+    jvmVersion = "11"
+    fasterXmlJacksonVersion = "2.14.2"
+    qosLogbackVersion = "1.2.9"
+    groovyVersion = '2.4.21'
+}
+
+sourceCompatibility = jvmVersion
+targetCompatibility = jvmVersion
 
 group 'com.syntj'
 version '1.0-SNAPSHOT'
@@ -43,19 +54,21 @@ testSets {
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile "org.mockito:mockito-core:2.+"
-    compile 'com.fasterxml.jackson.core:jackson-core:2.4.1'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.1'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.1'
-    compile 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8'
-    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
-    compile 'org.slf4j:slf4j-api:1.7.30'
-    compile 'ch.qos.logback:logback-classic:1.2.3'
-    compile 'ch.qos.logback:logback-core:1.2.3'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter
+    implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+    implementation "org.codehaus.groovy:groovy-all:$groovyVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testImplementation group: 'junit', name: 'junit', version: "$junitVersion"
+    testImplementation "org.mockito:mockito-core:2.+"
+    implementation "com.fasterxml.jackson.core:jackson-core:$fasterXmlJacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$fasterXmlJacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$fasterXmlJacksonVersion"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "org.hamcrest:hamcrest:2.2"
+    implementation "org.slf4j:slf4j-api:1.7.30"
+    implementation "ch.qos.logback:logback-classic:$qosLogbackVersion"
+    implementation "ch.qos.logback:logback-core:$qosLogbackVersion"
 
     // Wiremock will only be available in integration tests, but not in unit tests
     // this seems to be auto-wired to the testSets: integrationTest.
@@ -64,10 +77,10 @@ dependencies {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "$jvmVersion"
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "$jvmVersion"
 }
 
 project.integrationTest {
