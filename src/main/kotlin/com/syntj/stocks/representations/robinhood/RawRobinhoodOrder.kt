@@ -1,9 +1,9 @@
 package com.syntj.stocks.representations.robinhood
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy
+import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming
 
-@JsonNaming(PropertyNamingStrategy.LowerCaseWithUnderscoresStrategy::class)
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class RawRobinhoodOrder(
     val id: String,
     val refId: String,
